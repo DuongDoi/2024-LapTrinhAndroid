@@ -1,4 +1,4 @@
-package com.example.appdoctruyen.;
+package com.example.appdoctruyen;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -21,8 +21,7 @@ public class LoginActivity extends AppCompatActivity {
         Button loginButton;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_login);
-        databaseDoctruyen dbUser = new databaseDoctruyen(this);
-        databaseDoctruyen.conn();
+
         // Ánh xạ các phần tử UI
         loginButton = findViewById(R.id.btn_login);
         usernameEditText = findViewById(R.id.edittext_username);

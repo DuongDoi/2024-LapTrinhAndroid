@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#C2A77155"
+    tools:context=".LoginActivity">
+
+
+    <TextView
+        android:id="@+id/textview_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#CE50B3A8"
+        android:gravity="center"
+        android:paddingTop="30dp"
+        android:paddingBottom="30dp"
+        android:text="@string/login_textview"
+        android:textSize="50sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/edittext_username"
+        android:layout_width="290dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/size30dp"
+        android:autofillHints="username"
+        android:hint="@string/username_edittext"
+        android:inputType="text"
+        android:padding="@dimen/size10dp"
+        android:singleLine="true"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textview_login" />
+
+    <EditText
+        android:id="@+id/edittext_repassword"
+        android:layout_width="290dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/size30dp"
+        android:autofillHints="password"
+        android:backgroundTint="#FFFFFF"
+        android:hint="@string/password_edittext"
+        android:inputType="textPassword"
+        android:padding="@dimen/size10dp"
+        android:singleLine="true"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edittext_username" />
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/size30dp"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="#3F51B5"
+        android:text="@string/login_button_text"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edittext_repassword" />
+
+    <Button
+        android:id="@+id/btn_reg"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/size30dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/reg_button_text"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_login" />
+
+    <ImageView
+        android:id="@+id/imageViewuser"
+        android:layout_width="70dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintEnd_toStartOf="@+id/edittext_username"
+        app:layout_constraintHorizontal_bias="0.677"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textview_login"
+        app:srcCompat="@drawable/user_img" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="40dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="44dp"
+        app:layout_constraintEnd_toStartOf="@+id/edittext_repassword"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewuser"
+        app:srcCompat="@drawable/key_img" />
+
+    <TextView
+        android:id="@+id/textView_tentruyen"
+        android:layout_width="wrap_content"
+        android:layout_height="112dp"
+        android:gravity="center_vertical"
+        android:text="@string/tentruyen"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_reg"
+        app:layout_constraintVertical_bias="0.358" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

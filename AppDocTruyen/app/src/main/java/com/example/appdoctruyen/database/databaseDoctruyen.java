@@ -48,19 +48,21 @@ public class databaseDoctruyen  extends SQLiteOpenHelper {
     private Context context;
 
     //Tạo bảng truyện
-    private final static String createTB_Truyen = "CREATE TABLE "+TB_Truyen
-            +"("+matruyen+" varchar(10) primary key, "
-            +tentruyen+"TEXT, "
-            +motatruyen+"TEXT, "
-            +avatar_url+"TEXT, "
-            +sochuong+"integer)";
+    private final static String createTB_Truyen = "CREATE TABLE " + TB_Truyen +
+            "(" + matruyen + " varchar(10) primary key, " +
+            tentruyen + " TEXT, " +
+            motatruyen + " TEXT, " +
+            avatar_url + " TEXT, " +
+            sochuong + " integer)";
 
-    //Tạo bảng chi tiết chương
-    private final static String createTB_Chitietchuong = "create table "+TB_Chitietchuong
-            +"("+machuong+" integert primary key  autoincrement,"
-            +tenchuong+" Text,"
-            +noidungchuong+" Text,"
-            +matruyen+" varchar(10), foreign key ("+matruyen+") references " +TB_Truyen+"("+matruyen+"))";
+   //Tạo bảng chi tiết chương
+    private final static String createTB_Chitietchuong = "CREATE TABLE " + TB_Chitietchuong +
+            "(" + machuong + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            tenchuong + " TEXT, " +
+            noidungchuong + " TEXT, " +
+            matruyen + " varchar(10), " +
+            "FOREIGN KEY (" + matruyen + ") REFERENCES " + TB_Truyen + "(" + matruyen + "))";
+
 
     //Tạo bảng tài khoản
     private final static String createTB_Taikhoan = "create table "+TB_Taikhoan
@@ -68,14 +70,14 @@ public class databaseDoctruyen  extends SQLiteOpenHelper {
             +matkhau+" varchar(30))";
 
     //Tạo bảng bình luận
-    private final static String createTB_Binhluan = "create table "+TB_Binhluan
-            +"("+mabinhluan+" integer primary key  autoincrement,"
-            +noidung+" Text,"
-            +noidungchuong+" Text,"
-            +matruyen+" varchar(10), "
-            +tendangnhap+" varchar(30), " +
-            "foreign key ("+matruyen+") references " +TB_Truyen+"("+matruyen+"),"+
-            "foreign key ("+tendangnhap+") references " +TB_Taikhoan+"("+tendangnhap+"))";
+      private final static String createTB_Binhluan = "CREATE TABLE " + TB_Binhluan +
+            "(" + mabinhluan + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            noidung + " TEXT, " +
+            noidungchuong + " TEXT, " +
+            matruyen + " varchar(10), " +
+            tendangnhap + " varchar(30), " +
+            "FOREIGN KEY (" + matruyen + ") REFERENCES " + TB_Truyen + "(" + matruyen + ")," +
+            "FOREIGN KEY (" + tendangnhap + ") REFERENCES " + TB_Taikhoan + "(" + tendangnhap + "))";
 
     //Tạo bảng lịch sử đọc
     private final static String createTB_Lichsudoc = "create table "+TB_Lichsudoc
@@ -85,6 +87,8 @@ public class databaseDoctruyen  extends SQLiteOpenHelper {
             +tendangnhap+" varchar(30)," +
             " foreign key ("+tendangnhap+") references " +TB_Taikhoan+"("+tendangnhap+")," +
             " foreign key ("+matruyen+") references " +TB_Truyen+"("+matruyen+"))";
+
+
 
     //Insert DL
     private String insertTruyen1 = "INSERT INTO TB_Truyen VALUES(1,'Tinh tế nam thần là ba ta','Diêu Tư là trạch nữ không cha không mẹ, cuộc sống luôn bình bình thường thường, không tai nạn không khó khăn, cô cảm thấy cả đời cứ như vậy sống yên tới già.\n" +
@@ -286,6 +290,36 @@ public class databaseDoctruyen  extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
+    }
+
+    //Thêm mới tài khoản
+    public void addNewUser(String username, String password) {
+            SQLiteDatabase db = this.getWritableDatabase();
+            ContentValues values = new ContentValues();
+            values.put(tendangnhap, username);
+            values.put(matkhau, password);
+            db.insert(TB_Taikhoan, null, values);
+            db.close();
+    }
+
+
+    //Check tài khoản đã tồn tại chưa
+    public boolean checkUserExist(String username) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TB_Taikhoan + " WHERE " + tendangnhap + "=?", new String[]{username});
+        int count = cursor.getCount();
+        cursor.close();
+        return count > 0;
+    }
+
+    //Check tài khoản login
+
+    public boolean checkUserLogin(String username, String password) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TB_Taikhoan + " WHERE " + tendangnhap + "=?" + " AND " + matkhau + "=?", new String[]{username,password});
+        int count = cursor.getCount();
+        cursor.close();
+        return count > 0;
     }
 
 

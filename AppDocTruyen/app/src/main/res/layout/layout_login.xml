@@ -38,10 +38,11 @@
         app:layout_constraintTop_toBottomOf="@+id/textview_login" />
 
     <EditText
-        android:id="@+id/edittext_repassword"
+        android:id="@+id/edittext_password"
         android:layout_width="290dp"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/size30dp"
+        android:layout_marginTop="44dp"
         android:autofillHints="password"
         android:backgroundTint="#FFFFFF"
         android:hint="@string/password_edittext"
@@ -65,7 +66,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edittext_repassword" />
+        app:layout_constraintTop_toBottomOf="@+id/edittext_password" />
 
     <Button
         android:id="@+id/btn_reg"
@@ -85,8 +86,6 @@
         android:layout_width="70dp"
         android:layout_height="59dp"
         android:layout_marginTop="28dp"
-        app:layout_constraintEnd_toStartOf="@+id/edittext_username"
-        app:layout_constraintHorizontal_bias="0.677"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textview_login"
         app:srcCompat="@drawable/user_img" />
@@ -95,25 +94,25 @@
         android:id="@+id/imageView2"
         android:layout_width="40dp"
         android:layout_height="35dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="44dp"
-        app:layout_constraintEnd_toStartOf="@+id/edittext_repassword"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="56dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageViewuser"
         app:srcCompat="@drawable/key_img" />
 
     <TextView
         android:id="@+id/textView_tentruyen"
-        android:layout_width="wrap_content"
-        android:layout_height="112dp"
+        android:layout_width="321dp"
+        android:layout_height="282dp"
         android:gravity="center_vertical"
+        android:rotation="62"
+        android:rotationX="-18"
+        android:rotationY="-27"
         android:text="@string/tentruyen"
         android:textSize="48sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_reg"
-        app:layout_constraintVertical_bias="0.358" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

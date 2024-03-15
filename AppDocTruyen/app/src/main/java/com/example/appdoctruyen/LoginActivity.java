@@ -11,35 +11,86 @@ import android.content.Intent;
 
 import com.example.appdoctruyen.database.databaseDoctruyen;
 
+import java.sql.SQLException;
+
 
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText usernameEditText;
-    private EditText passwordEditText;
+    private EditText editTextUsername;
+    private EditText editTextPassword;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_login);
 
+        editTextUsername = findViewById(R.id.edittext_username);
+        editTextPassword = findViewById(R.id.edittext_password);
+
+        btn_dangnhapClick();
+        btn_dangkyClick();
+
+
+    }
+
+
+
+
+    private void btn_dangnhapClick() {
         // Nút đăng nhập
-        Button loginButton;
-        loginButton = findViewById(R.id.btn_login);
-        loginButton.setOnClickListener(new View.OnClickListener(){
+        Button loginButton = findViewById(R.id.btn_login);
+        loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this,activity_trangchu.class);
-                startActivity(intent);
+                handleLogin();
             }
         });
+    }
+    private void handleLogin() {
+        try {
+            // Lấy dữ liệu từ EditText
+            String username = editTextUsername.getText().toString();
+            String password = editTextPassword.getText().toString();
 
+            if (!username.isEmpty() && !password.isEmpty()) {
+                if (isUserAdmin(username, password)) {
+                    navigateToHomeActivity();
+                    Toast.makeText(LoginActivity.this, "Welcome back boss ^.^", Toast.LENGTH_SHORT).show();
+                } else if (loginUser(username, password)) {
+                    navigateToHomeActivity();
+                } else {
+                    Toast.makeText(LoginActivity.this, "Login fail!!! User does not exist!!!", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(LoginActivity.this, "Login fail!!! Please fill username and password", Toast.LENGTH_SHORT).show();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            Toast.makeText(LoginActivity.this, "Login fail!!! An error occurred.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private boolean isUserAdmin(String username, String password) {
+        return username.equals("admin") && password.equals("admin");
+    }
+
+    private boolean loginUser(String username, String password) throws SQLException {
+        databaseDoctruyen databaseHelper = new databaseDoctruyen(LoginActivity.this);
+        return databaseHelper.checkUserLogin(username, password);
+    }
+
+    private void navigateToHomeActivity() {
+        Toast.makeText(LoginActivity.this, "Login successful.", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(LoginActivity.this, activity_trangchu.class);
+        startActivity(intent);
+    }
+
+    private void btn_dangkyClick(){
         //Nút đăng ký
         Button registerButton = findViewById(R.id.btn_reg);
-        registerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, RegistryActivity.class);
-                startActivity(intent);
-            }
+        registerButton.setOnClickListener(v -> {
+            Intent intent = new Intent(LoginActivity.this, RegistryActivity.class);
+            startActivity(intent);
         });
     }
 

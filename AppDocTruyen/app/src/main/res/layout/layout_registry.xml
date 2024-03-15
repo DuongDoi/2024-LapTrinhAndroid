@@ -89,7 +89,7 @@
     <Button
         android:id="@+id/bntThoat"
         android:layout_width="160dp"
-        android:layout_height="60dp"
+        android:layout_height="@dimen/size60dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="36dp"
         android:backgroundTint="#C61919"

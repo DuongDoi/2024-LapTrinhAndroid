@@ -5,7 +5,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.content.ContentValues;
 import android.database.*;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -57,7 +56,7 @@ public class databaseDoctruyen  extends SQLiteOpenHelper {
             avatar_url + " TEXT, " +
             sochuong + " integer)";
 
-   //Tạo bảng chi tiết chương
+    //Tạo bảng chi tiết chương
     private final static String createTB_Chitietchuong = "CREATE TABLE " + TB_Chitietchuong +
             "(" + machuong + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             tenchuong + " TEXT, " +
@@ -72,7 +71,7 @@ public class databaseDoctruyen  extends SQLiteOpenHelper {
             +matkhau+" varchar(30))";
 
     //Tạo bảng bình luận
-      private final static String createTB_Binhluan = "CREATE TABLE " + TB_Binhluan +
+    private final static String createTB_Binhluan = "CREATE TABLE " + TB_Binhluan +
             "(" + mabinhluan + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             noidung + " TEXT, " +
             noidungchuong + " TEXT, " +
@@ -93,7 +92,7 @@ public class databaseDoctruyen  extends SQLiteOpenHelper {
 
 
     //Insert DL
-    private String insertTruyen1 = "INSERT INTO TB_Truyen VALUES(1,'Tinh tế nam thần là ba ta','Diêu Tư là trạch nữ không cha không mẹ, cuộc sống luôn bình bình thường thường, không tai nạn không khó khăn, cô cảm thấy cả đời cứ như vậy sống yên tới già.\n" +
+    private final String insertTruyen1 = "INSERT INTO TB_Truyen VALUES(1,'Tinh tế nam thần là ba ta','Diêu Tư là trạch nữ không cha không mẹ, cuộc sống luôn bình bình thường thường, không tai nạn không khó khăn, cô cảm thấy cả đời cứ như vậy sống yên tới già.\n" +
             "\n" +
             "Sau đó… cô chết!\n" +
             "\n" +
@@ -113,7 +112,7 @@ public class databaseDoctruyen  extends SQLiteOpenHelper {
             "\n" +
             "Mộ Huyền','https://static.8cache.com/cover/o/eJzLyTDW1zWMtzD2MdJ1MjSO1A8rLE1Oig_2MA301HeEAi8jE_2kiqJAR--UjICccv1yI0NT3QxjIyNdz2QTIwCCqxLp/tinh-te-nam-than-la-ba-ta.jpg',76)";
 
-    private String insertTruyen2 = "INSERT INTO TB_Truyen VALUES(2,'Cô vợ ngọt ngào có chút bất lương','\"Khẩu vị của người này rốt cuộc ra sao a! Cái này cũng bỏ được vào miệng à?\"\n" +
+    private final String insertTruyen2 = "INSERT INTO TB_Truyen VALUES(2,'Cô vợ ngọt ngào có chút bất lương','\"Khẩu vị của người này rốt cuộc ra sao a! Cái này cũng bỏ được vào miệng à?\"\n" +
             "\n" +
             "Sau khi cô tỉnh dậy, nhìn vào trong gương thấy chính mình đầu xăm mặt giống như quỷ, cảm giác chỉ nhìn thêm một giây cũng hỏng đôi mắt.\n" +
             "\n" +
@@ -123,7 +122,7 @@ public class databaseDoctruyen  extends SQLiteOpenHelper {
             "\n" +
             "Đời này mặc cho các ngươi trâu bò rắn rết trăm phương nghìn kế, muốn cô ly dị, nhường đi ngôi vị phu nhân. Ngượng ngùng quá ~~, chỉ số thông minh của bản tiểu thư đã lên dây rồi nhé!','https://static.8cache.com/cover/o/eJzLyTDW1zXKKnJ09440NzRw1Q8zCc_3LDTyDo_w1HeEgsCCdP2MND9Hl2wTP3_fYoOy3EDDSq-gomKf5GRns6KCIsPcxHRnD1_9ciNDU90MYyMjAHumGmo=/co-vo-ngot-ngao-co-chut-bat-luong-vo-moi-bat-luong-co-chut-ngot.jpg',2489)";
 
-    private String insertTruyen3 = "INSERT INTO TB_Truyen VALUES(3,'Đạo tình','Đây là tác phẩm hắc bang, bối cảnh hoành tráng, tình tiết đẫm máu u ám. Nếu bạn muốn xem câu truyện tình lãng mạn thì đừng nhảy vào hố này. \"Đạo tình\" là một thế giới đen tối, trong đó nam chính tuyệt đối không phải là người tốt.\n" +
+    private final String insertTruyen3 = "INSERT INTO TB_Truyen VALUES(3,'Đạo tình','Đây là tác phẩm hắc bang, bối cảnh hoành tráng, tình tiết đẫm máu u ám. Nếu bạn muốn xem câu truyện tình lãng mạn thì đừng nhảy vào hố này. \"Đạo tình\" là một thế giới đen tối, trong đó nam chính tuyệt đối không phải là người tốt.\n" +
             "\n" +
             "- Nàng là một trong những tên trộm kỳ tài nhất thế kỷ hai mốt. Nàng là nữ hoàng đua xe trong bóng đêm. Nàng là một người phụ nữ giống như cơn gió, đi đến bất định.\n" +
             "\n" +
@@ -133,7 +132,7 @@ public class databaseDoctruyen  extends SQLiteOpenHelper {
             "\n" +
             "- Trên các diễn đàn về tiểu thuyết ngôn tình ở Trung Quốc, \"Đạo tình\" nhận được vô số lời khen từ độc giả như \"đọc đi đọc lại không chán\", \"tiểu thuyết hắc bang kinh điển\"... Hy vọng cuốn truyện sẽ khiến mọi người hài lòng. Còn bây giờ, chúng ta hãy bắt đầu cuộc phiêu lưu trong thế giới \"Đạo tình\"...','https://static.8cache.com/cover/o/eJzLyTDR1w3NNCp29dKNcit01A9zSktPTHMyLij21HeEguyQQP1wv0q_0CJDo9IIE_1yI0NT3QxjIyMAUDASSQ==/dao-tinh.jpg',132)";
 
-    private String insertTruyen4 = "INSERT INTO TB_Truyen VALUES(4,'Trò chơi nguy hiểm: Tổng tài tội ác tày trờ','Nội Dung Truyện:\n" +
+    private final String insertTruyen4 = "INSERT INTO TB_Truyen VALUES(4,'Trò chơi nguy hiểm: Tổng tài tội ác tày trờ','Nội Dung Truyện:\n" +
             "\n" +
             "Là ma quỷ, muốn giữ lấy người, hắn chỉ biết dùng cách thức của bản thân. Trong giới giải trí, cô là ngôi sao ca nhạc được chú ý nhất, và đằng sau, cũng là một con chim được một sợi dây vàng trói buộc, mãi mãi không thoát khỏi bàn tay hắn.\n" +
             "\n" +
@@ -141,7 +140,7 @@ public class databaseDoctruyen  extends SQLiteOpenHelper {
             "\n" +
             "Bóng tối bao trùm, ảo mộng nát tan… Hắn lạnh lùng nói: “Vĩnh viễn đừng nghĩ đến chuyện rời đi.” Cô chỉ có thể ngước mắt nhìn người đàn ông đáng sợ này…Một tình yêu cấm kỵ cứ thế tiếp diễn hàng đêm…','https://static.8cache.com/cover/o/eJzLyTDW140IdjQy1vVyCsz21A9zLrDMS_Yq8s7w1HeEguzEUP2C0hQnvyJvD-dCX_1yI0NT3QxjIyMAQRQSPQ==/tro-choi-nguy-hiem-tong-tai-toi-ac-tay-troi.jpg',200)";
 
-    private String insertchuongTruyen1 = "insert into TB_Chitietchuong values\n" +
+    private final String insertchuongTruyen1 = "insert into TB_Chitietchuong values\n" +
             "(1,'Chương 1: Em gái, em đã chết!','Diêu Tư cảm thấy mình gần đây có chút gì đó không đúng, cô luôn là người ngủ đến mức sét đánh cũng không nhúc nhích, vậy mà mấy ngày nay lại không ngủ được. Kỳ lạ là tinh thần lại tốt cực kỳ.\n" +
             "\n" +
             "Eo không mỏi, chân không mềm, liền ngay cả dì cả nhiều năm gây rối cho cô cũng đều không tới, một hơi leo lên mười tầng lầu cũng không mệt. Càng thần kỳ chính là vốn dĩ trong ăn uống cô cực thích ăn cay, nhưng hiện tại vừa thấy ớt cay thì dạ dày liền đau. Ban đầu, cô còn tưởng rằng do mất ngủ nên dạ dày suy yếu, nhưng vài ngày sau cô phát hiện không chỉ đồ cay, mà đối với tất cả đồ ăn đều mất đi hứng thú, giống như bị bệnh kén ăn.'),\n" +
@@ -156,7 +155,7 @@ public class databaseDoctruyen  extends SQLiteOpenHelper {
             "\n" +
             "“Xem anh này, đã quên em không có Người dẫn đường, còn không biết dùng.” Hắn vỗ vỗ đầu, lại phẫn nộ mắng to lên, “Thật là tạo nghiệt nga, đều do cái tên đáng chém ngàn đao kia, biến đổi em xong lại không phụ trách, đem em một cái con non ném ở chỗ này mặc kệ, hắn đáng cô độc cả đời.” Hắn một bên mắng, một bên lại không quên cầm lấy thẻ thân phận trong tay cô, cũng không biết làm như thế nào, tấm card hình con dơi đột nhiên biến thành màu đỏ chói mắt, con số “5” ở phía trêи cũng biến thành dấu chấm than (!).');";
 
-    private String insertchuongTruyen2 = "insert into TB_Chitietchuong values\n" +
+    private final String insertchuongTruyen2 = "insert into TB_Chitietchuong values\n" +
             "(2,'Chương 1: Còn muốn trốn sao?','Diệp Oản Oản mở mắt.\n" +
             "\n" +
             "Đối mặt là đôi môi khiến cho cô sợ hãi đến ngay cả linh hồn đều run rẩy con ngươi.\n" +
@@ -203,7 +202,7 @@ public class databaseDoctruyen  extends SQLiteOpenHelper {
             "\n" +
             "Thật ra thì, cảnh trí của ngôi nhà rất đẹp, dù sao cũng là Tư Dạ Hàn tự mình thiết kế, còn mời cả đoàn đội kiến trúc cấp thế giới, ở vị trí phong thủy bảo địa tốt nhất Đế Đô, hao tốn suốt năm năm thời gian mới hoàn toàn làm xong.')";
 
-    private String insertchuongTruyen3 = "insert into TB_Chitietchuong values\n" +
+    private final String insertchuongTruyen3 = "insert into TB_Chitietchuong values\n" +
             "(3,'Chương 1: Ăn trộm','Ding dong, ding dong, chuông đồng hồ buổi sáng điểm chín tiếng. Khi tiếng chuông vang lên, tủ kính chống trộm phát ra tiếng động nhẹ, rồi từ từ bị dỡ ra.\n" +
             "\n" +
             "Một bàn tay ngọc ngà thò vào bên trong nhấc miếng ngọc đặt trên quầy triển lãm, tiếng nói khe khẽ cất lên: \" Có đầu rồng, hoa văn long phượng...quả nhiên là đồ tốt\".\n" +
@@ -218,7 +217,7 @@ public class databaseDoctruyen  extends SQLiteOpenHelper {
             "\n" +
             "Đúng lúc này, xe Ly Tâm đi ngang qua hai người đàn ông bỏ chạy. Trong khi cô chưa kịp nhấn ga, một người đàn ông thuận tay nắm lấy cửa xe cô bay người nhảy trong rồi kéo người còn lại leo lên xe.')";
 
-    private String insertchuongTruyen4 = "insert into TB_Chitietchuong values\n" +
+    private final String insertchuongTruyen4 = "insert into TB_Chitietchuong values\n" +
             "(4,'Chương 1','Đêm tối, gió thổi mây tan, hạt mưa lớn đọng trên tấm cửa kính trong suốt của cửa sổ sát đất, dần tan đi chỉ còn một mảnh mỏng manh.\n" +
             "\n" +
             "Bên trong căn biệt thự tràn ngập mùi máu tươi.\n" +
@@ -238,14 +237,14 @@ public class databaseDoctruyen  extends SQLiteOpenHelper {
             "Mặt trời ló từ trong đám mây chiếu rọi ánh sáng rực rỡ, làn sương mù mờ ảo, lập lờ như biển mây vây lấy Bạc Tuyết bảo, tựa như một bức thi họa; đỉnh mái trắng tinh, tạo hình duyên dáng, cao thấp đan xen, lầu trong lầu, cửa sổ thông thiên thẳng xuống, cột trụ đều thiết kế dáng vòm, điển hình cho phong cách kiến trúc Rô-ma.')";
 
 
-    private String insertBinhluan = "insert into TB_Binhluan values\n" +
+    private final String insertBinhluan = "insert into TB_Binhluan values\n" +
             "('cayars4',1,'Hay quá'),\n" +
             "('cayars4',2,'Quá tuyệt vời'),\n" +
             "('lmunn5',1,'Nữ chính xinh quá'),\n" +
             "('lmunn5',4,'Nam chính ngầu bá cháy'),\n" +
             "('gwand7',3,'Nội dung xì ke')";
 
-    private String insertTaikhoan = "insert into TB_Taikhoan values \n" +
+    private final String insertTaikhoan = "insert into TB_Taikhoan values \n" +
             "('tminigo0', 'oG8%`v$@'),\n" +
             "('kberkeley1', 'lN5=.ETSM*o9$'),\n" +
             "('cgulk2', 'jX9''M=R7rXw77('),\n" +
@@ -256,14 +255,14 @@ public class databaseDoctruyen  extends SQLiteOpenHelper {
             "('gwand7', 'vS1)k5L6032'),\n" +
             "('tluetchford8', 'cW7(AnUc''cKs'),\n" +
             "('iallchorn9', 'sC6\"V5(q')";
-    
-    private String insertLichsudoc = "insert into TB_Lichsudoc values\n" +
+
+    private final String insertLichsudoc = "insert into TB_Lichsudoc values\n" +
             "('gwainscoat6',1,3),\n" +
             "('iallchorn9',1,2),\n" +
             "('cayars4',2,1),\n" +
             "('lmunn5',4,2),\n" +
             "('gwand7',3,1)";
-    
+
     public databaseDoctruyen(@Nullable Context context){
         super(context, DATABASE_NAME, null, VERSION);
     }
@@ -296,12 +295,12 @@ public class databaseDoctruyen  extends SQLiteOpenHelper {
 
     //Thêm mới tài khoản
     public void addNewUser(String username, String password) {
-            SQLiteDatabase db = this.getWritableDatabase();
-            ContentValues values = new ContentValues();
-            values.put(tendangnhap, username);
-            values.put(matkhau, password);
-            db.insert(TB_Taikhoan, null, values);
-            db.close();
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(tendangnhap, username);
+        values.put(matkhau, password);
+        db.insert(TB_Taikhoan, null, values);
+        db.close();
     }
 
 

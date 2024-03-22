@@ -75,13 +75,21 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private boolean loginUser(String username, String password) throws SQLException {
-        databaseDoctruyen databaseHelper = new databaseDoctruyen(LoginActivity.this);
-        return databaseHelper.checkUserLogin(username, password);
+        try {
+
+            databaseDoctruyen databaseHelper = new databaseDoctruyen(LoginActivity.this);
+            return databaseHelper.checkUserLogin(username, password);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+
     }
 
     private void navigateToHomeActivity() {
         Toast.makeText(LoginActivity.this, "Login successful.", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(LoginActivity.this, activity_trangchu.class);
+        Intent intent = new Intent(this, activity_comment.class);//Thay activity_comment = activity muốn chuyển đến khi đăng nhập thành công
         startActivity(intent);
     }
 

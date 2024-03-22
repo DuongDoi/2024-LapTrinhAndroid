@@ -237,13 +237,6 @@ public class databaseDoctruyen  extends SQLiteOpenHelper {
             "Mặt trời ló từ trong đám mây chiếu rọi ánh sáng rực rỡ, làn sương mù mờ ảo, lập lờ như biển mây vây lấy Bạc Tuyết bảo, tựa như một bức thi họa; đỉnh mái trắng tinh, tạo hình duyên dáng, cao thấp đan xen, lầu trong lầu, cửa sổ thông thiên thẳng xuống, cột trụ đều thiết kế dáng vòm, điển hình cho phong cách kiến trúc Rô-ma.')";
 
 
-    private final String insertBinhluan = "insert into TB_Binhluan values\n" +
-            "('cayars4',1,'Hay quá'),\n" +
-            "('cayars4',2,'Quá tuyệt vời'),\n" +
-            "('lmunn5',1,'Nữ chính xinh quá'),\n" +
-            "('lmunn5',4,'Nam chính ngầu bá cháy'),\n" +
-            "('gwand7',3,'Nội dung xì ke')";
-
     private final String insertTaikhoan = "insert into TB_Taikhoan values \n" +
             "('tminigo0', 'oG8%`v$@'),\n" +
             "('kberkeley1', 'lN5=.ETSM*o9$'),\n" +
@@ -255,6 +248,14 @@ public class databaseDoctruyen  extends SQLiteOpenHelper {
             "('gwand7', 'vS1)k5L6032'),\n" +
             "('tluetchford8', 'cW7(AnUc''cKs'),\n" +
             "('iallchorn9', 'sC6\"V5(q')";
+    private final String insertBinhluan = "insert into TB_Binhluan values\n" +
+            "('cayars4',1,'Hay quá'),\n" +
+            "('cayars4',2,'Quá tuyệt vời'),\n" +
+            "('lmunn5',1,'Nữ chính xinh quá'),\n" +
+            "('lmunn5',4,'Nam chính ngầu bá cháy'),\n" +
+            "('gwand7',3,'Nội dung xì ke')";
+
+
 
     private final String insertLichsudoc = "insert into TB_Lichsudoc values\n" +
             "('gwainscoat6',1,3),\n" +
@@ -270,22 +271,102 @@ public class databaseDoctruyen  extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(createTB_Truyen);
-        db.execSQL(createTB_Taikhoan);
-        db.execSQL(createTB_Chitietchuong);
-        db.execSQL(createTB_Binhluan);
-        db.execSQL(createTB_Lichsudoc);
-        db.execSQL(insertTruyen1);
-        db.execSQL(insertTruyen2);
-        db.execSQL(insertTruyen3);
-        db.execSQL(insertTruyen4);
-        db.execSQL(insertchuongTruyen1);
-        db.execSQL(insertchuongTruyen2);
-        db.execSQL(insertchuongTruyen3);
-        db.execSQL(insertchuongTruyen4);
-        db.execSQL(insertBinhluan);
-        db.execSQL(insertTaikhoan);
-        db.execSQL(insertLichsudoc);
+        try{
+            db.execSQL(createTB_Truyen);
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        try{
+            db.execSQL(createTB_Taikhoan);
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        try{
+            db.execSQL(createTB_Chitietchuong);
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        try{
+            db.execSQL(createTB_Binhluan);
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        try{
+            db.execSQL(createTB_Lichsudoc);
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        try{
+            db.execSQL(insertTruyen1);
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        try{
+            db.execSQL(insertTruyen2);
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        try{
+            db.execSQL(insertTruyen3);
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        try{
+            db.execSQL(insertTruyen4);
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        try{
+            db.execSQL(insertchuongTruyen1);
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        try{
+            db.execSQL(insertchuongTruyen2);
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        try{
+            db.execSQL(insertchuongTruyen3);
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        try{
+            db.execSQL(insertchuongTruyen4);
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        try{
+            db.execSQL(insertTaikhoan);
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        try{
+            db.execSQL(insertBinhluan);
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        try{
+            db.execSQL(insertLichsudoc);
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
     }
 
     @Override

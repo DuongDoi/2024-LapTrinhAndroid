@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#C2A77155"
+    android:visibility="visible"
+    tools:context=".LoginActivity">
+
+
+    <EditText
+        android:id="@+id/dangky_nhaplaimatkhau"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/size30dp"
+        android:autofillHints="password"
+        android:hint="@string/password_edittext_reg"
+        android:inputType="textPassword"
+        android:padding="@dimen/size10dp"
+        android:singleLine="true"
+        android:textColor="@color/black"
+        android:textColorHint="#5D4037"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dangky_matkhau" />
+
+    <TextView
+        android:id="@+id/textview_registry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:background="#CE50B3A8"
+        android:gravity="center"
+        android:paddingTop="30dp"
+        android:paddingBottom="30dp"
+        android:text="@string/registry_textview"
+        android:textSize="50sp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/dangky_tendangnhap"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/size30dp"
+        android:autofillHints="username"
+        android:hint="@string/username_edittext_reg"
+        android:inputType="text"
+        android:padding="@dimen/size10dp"
+        android:singleLine="true"
+        android:textColor="@color/black"
+        android:textColorHint="#5D4037"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textview_registry" />
+
+    <EditText
+        android:id="@+id/dangky_matkhau"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/size30dp"
+        android:autofillHints="password"
+        android:hint="@string/password_edittext_reg"
+        android:inputType="textPassword"
+        android:padding="@dimen/size10dp"
+        android:singleLine="true"
+        android:textColor="@color/black"
+        android:textColorHint="#5D4037"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dangky_tendangnhap"
+        tools:ignore="DuplicateSpeakableTextCheck" />
+
+    <Button
+        android:id="@+id/dangky_btndangky"
+        android:layout_width="160dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="24dp"
+        android:width="120dp"
+        android:backgroundTint="#C92F4BB3"
+        android:text="@string/reg_button_xong_reg"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toStartOf="@+id/dangky_btnquaylai"
+        app:layout_constraintHorizontal_bias="0.476"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dangky_nhaplaimatkhau" />
+
+    <Button
+        android:id="@+id/dangky_btnquaylai"
+        android:layout_width="160dp"
+        android:layout_height="@dimen/size60dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="28dp"
+        android:backgroundTint="#C61919"
+        android:focusable="auto"
+        android:focusableInTouchMode="false"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:freezesText="false"
+        android:text="@string/reg_button_thoat_reg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dangky_nhaplaimatkhau"
+        tools:textSize="30sp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

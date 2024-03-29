@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.appdoctruyen">
+    <uses-permission android:name="android.permission.READ_SYSTEM_ALERT_WINDOW" />
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -25,9 +26,12 @@
             android:name=".activity_trangchu"
             android:exported="false" />
         <activity
-            android:name=".RegistryActivity" >
-
-        </activity>
+            android:name=".RegistryActivity"
+            android:exported="false"/>
+        <activity android:name=".activity_danhsachchuong"
+            android:exported="false"/>
+        <activity android:name=".activity_doctruyen"
+            android:exported="false"/>
         <activity
             android:name=".LoginActivity"
             android:exported="true">

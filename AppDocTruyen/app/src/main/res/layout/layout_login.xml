@@ -23,7 +23,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/edittext_username"
+        android:id="@+id/dangnhap_tendangnhap"
         android:layout_width="290dp"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/size30dp"
@@ -33,12 +33,13 @@
         android:padding="@dimen/size10dp"
         android:singleLine="true"
         android:textColor="@color/black"
+        android:textColorHint="#5D4037"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textview_login" />
 
     <EditText
-        android:id="@+id/edittext_password"
+        android:id="@+id/dangnhap_matkhau"
         android:layout_width="290dp"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/size30dp"
@@ -50,12 +51,13 @@
         android:padding="@dimen/size10dp"
         android:singleLine="true"
         android:textColor="@color/black"
+        android:textColorHint="#5D4037"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edittext_username" />
+        app:layout_constraintTop_toBottomOf="@id/dangnhap_tendangnhap" />
 
     <Button
-        android:id="@+id/btn_login"
+        android:id="@+id/dangnhap_btndangnhap"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/size30dp"
@@ -66,10 +68,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edittext_password" />
+        app:layout_constraintTop_toBottomOf="@+id/dangnhap_matkhau"
+        tools:ignore="DuplicateSpeakableTextCheck" />
 
     <Button
-        android:id="@+id/btn_reg"
+        android:id="@+id/dangnhap_btndangky"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/size30dp"
@@ -79,7 +82,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_login" />
+        app:layout_constraintTop_toBottomOf="@+id/dangnhap_btndangnhap" />
 
     <ImageView
         android:id="@+id/imageViewuser"
@@ -88,7 +91,8 @@
         android:layout_marginTop="28dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textview_login"
-        app:srcCompat="@drawable/user_img" />
+        app:srcCompat="@drawable/user_img"
+        android:contentDescription="@string/todo" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -98,21 +102,26 @@
         android:layout_marginTop="56dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageViewuser"
-        app:srcCompat="@drawable/key_img" />
+        app:srcCompat="@drawable/key_img"
+        android:contentDescription="@string/todo" />
 
     <TextView
         android:id="@+id/textView_tentruyen"
-        android:layout_width="321dp"
-        android:layout_height="282dp"
+        android:layout_width="304dp"
+        android:layout_height="266dp"
         android:gravity="center_vertical"
-        android:rotation="62"
-        android:rotationX="-18"
-        android:rotationY="-27"
-        android:text="@string/tentruyen"
-        android:textSize="48sp"
+        android:rotationX="15"
+        android:rotationY="4"
+        android:scaleX="1.2"
+        android:text="@string/login_Appname"
+        android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.654"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.933"
+        tools:ignore="TextSizeCheck" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

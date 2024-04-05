@@ -18,24 +18,29 @@
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbarmanhinhchinh"
-                android:background="#1D34B6"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize">
+                android:layout_height="?attr/actionBarSize"
+                android:background="#1D34B6">
 
-                <TextView
-                    android:textColor="@color/white"
-                    android:textSize="25sp"
-                    android:layout_gravity="center"
-                    android:text="Doctruyen"
+                <ImageButton
+                    android:layout_marginRight="@dimen/size10dp"
+                    android:scaleX="1.5"
+                    android:scaleY="1.5"
+                    android:background="#1D34B6"
+                    android:layout_gravity="end"
+                    android:id="@+id/btnsearch"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                </TextView>
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_search"/>
+
+
             </androidx.appcompat.widget.Toolbar>
 
             <ViewFlipper
                 android:id="@+id/viewflipper"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"/>
+                android:layout_gravity="center"
+                android:layout_width="200dp"
+                android:layout_height="200dp"/>
 
             <LinearLayout
                 android:orientation="vertical"
@@ -57,25 +62,22 @@
                     android:layout_width="match_parent"
                     android:layout_height="471dp"></ListView>
             </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_search" />
         </LinearLayout>
 
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/navview"
             android:layout_gravity="start"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            app:headerLayout="@layout/header_navigation"
+            app:menu="@menu/menu_for_navigationview">
 
-            <ListView
-                android:id="@+id/lvthongtin"
-                android:layout_width="240dp"
-                android:layout_height="21dp"></ListView>
-
-            <ListView
-                android:id="@+id/lvMHC"
-                android:layout_marginTop="100dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            </ListView>
         </com.google.android.material.navigation.NavigationView>
     </androidx.drawerlayout.widget.DrawerLayout>
 </LinearLayout>

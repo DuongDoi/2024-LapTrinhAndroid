@@ -66,13 +66,12 @@ public class databaseDoctruyen extends SQLiteOpenHelper {
                 + " FOREIGN KEY ( " + TB_TRUYEN_MATRUYEN + " ) REFERENCES " + TB_TRUYEN + " ( " + TB_TRUYEN_MATRUYEN + " ), "
                 + " FOREIGN KEY ( " + TB_TAIKHOAN_TENDANGNHAP + " ) REFERENCES " + TB_TAIKHOAN + " ( " + TB_TAIKHOAN_TENDANGNHAP + " ));";
         String tbLICHSUDOC = "CREATE TABLE " + TB_LICHSUDOC
-                + " ( " + TB_LICHSUDOC_MALICHSUDOC + " INTEGER PRIMARY KEY  AUTOINCREMENT, "
-                + TB_CHITIETCHUONG_MACHUONG + " TEXT, "
+                + " ( " + TB_CHITIETCHUONG_MACHUONG + " TEXT, "
                 + TB_TRUYEN_MATRUYEN + " TEXT, "
                 + TB_TAIKHOAN_TENDANGNHAP + " TEXT, "
-                + " FOREIGN KEY ( " + TB_CHITIETCHUONG_MACHUONG + " ) REFERENCES " + TB_CHITIETCHUONG + " ( " + TB_CHITIETCHUONG_MACHUONG + " ), "+
-                " FOREIGN KEY ( " + TB_TRUYEN_MATRUYEN + " ) REFERENCES " + TB_TRUYEN + " ( " + TB_TRUYEN_MATRUYEN + " ), "+
-                " FOREIGN KEY ( " + TB_TAIKHOAN_TENDANGNHAP + " ) REFERENCES " + TB_TAIKHOAN + " ( " + TB_TAIKHOAN_TENDANGNHAP + " ));";
+                + "PRIMARY KEY ( " + TB_TRUYEN_MATRUYEN + " , " + TB_TAIKHOAN_TENDANGNHAP + " ) ,"
+                + " FOREIGN KEY ( " + TB_TRUYEN_MATRUYEN + " ) REFERENCES " + TB_TRUYEN + " ( " + TB_TRUYEN_MATRUYEN + " ), "
+                + " FOREIGN KEY ( " + TB_TAIKHOAN_TENDANGNHAP + " ) REFERENCES " + TB_TAIKHOAN + " ( " + TB_TAIKHOAN_TENDANGNHAP + " ));";
 
         String isTAIKHOAN = "INSERT INTO " + TB_TAIKHOAN + " ( " + TB_TAIKHOAN_TENDANGNHAP +" , " + TB_TAIKHOAN_MATKHAU + ") VALUES " +
                 "    ('admin', 'admin')," +
@@ -124,11 +123,11 @@ public class databaseDoctruyen extends SQLiteOpenHelper {
                 "('Bình luận mẫu5', '001', 'ngocdiu'),"+
                 "('Bình luận mẫu6', '002', 'duongdoi')," +
                 "('Bình luận mẫu7', '002', 'ngocdiu')" ;
-        String insert_lichsudoc = "INSERT INTO LICHSUDOC ( MACHUONG , MATRUYEN , TENDANGNHAP ) VALUES \n" +
-                "('chuong1truyen1', '001', 'admin'),\n" +
-                "('chuong1truyen2', '002', 'admin'),\n" +
-                "('chuong3truyen2', '002', 'ngocdiu'),\n" +
-                "('chuong2truyen1', '001', 'duongdoi')";
+        String insert_lichsudoc = "INSERT INTO LICHSUDOC (MATRUYEN , TENDANGNHAP ) VALUES \n" +
+                "('001', 'admin'),\n" +
+                "('002', 'admin'),\n" +
+                "('002', 'ngocdiu'),\n" +
+                "('001', 'duongdoi')";
         try {
             db.execSQL(tbTAIKHOAN);
         }
@@ -376,6 +375,55 @@ public class databaseDoctruyen extends SQLiteOpenHelper {
         return  mylist;
     }
 
+//Lịch sử đọc
+    //Lấy về danh sách tên truyện mà người dùng đã đọc
+    public ArrayList<String> laydanhsachlichsudoc(String username) {
+        ArrayList<String> mylist = new ArrayList<>();
+        SQLiteDatabase db = this.getWritableDatabase();
+        String selection = "TENDANGNHAP = ?";
+        String[] selectionArgs = { username };
+        Cursor c = db.query(TB_LICHSUDOC, null, selection, selectionArgs, null, null, null);
+        c.moveToNext();
+        String data = "";
+        while(!c.isAfterLast()){
+            String selection2 = "MATRUYEN = ?";
+            String[] selectionArgs2 = { c.getString(2) };
+            Cursor c2 = db.query(TB_TRUYEN, null, selection2, selectionArgs2, null, null, null);
+            c2.moveToNext();
+            while (!c2.isAfterLast()){
+                data = c2.getString(1);
+                mylist.add(data);
+                c2.moveToNext();
+            }
+            c.moveToNext();
+        }
+        c.close();
+        db.close();
+        return  mylist;
+    }
+//Trang chủ
+        //Kiểm tra xem người dùng đã đọc truyện này chưa
+    public boolean checkLichsudoc(String matruyen,String tendangnhap) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String querry = " SELECT * FROM " + TB_LICHSUDOC + " WHERE " + TB_TAIKHOAN_TENDANGNHAP + " = '" + tendangnhap + "' AND "+ TB_TRUYEN_MATRUYEN +" = '" + matruyen + "';";
+        Cursor cursor = db.rawQuery(querry,null);
+        int count = cursor.getCount();
+        cursor.close();
+        db.close();
+        return count > 0;
+    }
+    //Chưa đọc thì thêm vào bảng lịch sử đọc
+    public void themLichsudoc(String matruyen,String tendangnhap){
+        if(!checkLichsudoc(matruyen,tendangnhap)){
+            SQLiteDatabase db = this.getWritableDatabase();
+            ContentValues values = new ContentValues();
+            values.put(TB_TRUYEN_MATRUYEN,matruyen);
+            values.put(TB_TAIKHOAN_TENDANGNHAP,tendangnhap);
+            db.insert(TB_LICHSUDOC,null,values);
+            db.close();
+        }
+    }
+    //Lấy danh sách avatar
     public ArrayList<String> layDSAvatar(){
         ArrayList<String> mylist = new ArrayList<>();
         SQLiteDatabase db = this.getWritableDatabase();

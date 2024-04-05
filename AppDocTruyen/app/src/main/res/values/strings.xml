@@ -4,7 +4,7 @@
 
     //login
     <string name="login_textview">Đăng nhập</string>
-    <string name="username_edittext">Tài khoản</string>
+    <string name="username_edittext">Tên đăng nhập</string>
     <string name="password_edittext">Mật khẩu</string>
     <string name="login_button_text">Đăng nhập</string>
     <string name="reg_button_text">Đăng ký</string>

@@ -76,7 +76,10 @@ public class databaseDoctruyen extends SQLiteOpenHelper {
         String isTAIKHOAN = "INSERT INTO " + TB_TAIKHOAN + " ( " + TB_TAIKHOAN_TENDANGNHAP +" , " + TB_TAIKHOAN_MATKHAU + ") VALUES " +
                 "    ('admin', 'admin')," +
                 "    ('duongdoi', 'duongdoi')," +
-                "    ('ngocdiu', 'ngocdiu')";
+                "    ('ngocdiu', 'ngocdiu')," +
+                "    ('quynhanh', 'quynhanh')," +
+                "    ('lanhuong', 'lanhuong')," +
+                "    ('a', 'a')";
         String isTRUYEN = "INSERT INTO TRUYEN ( MATRUYEN , TENTRUYEN , MOTATRUYEN , AVATAR , SOCHUONG) \n" +
                 "VALUES ('001', 'Tinh tế nam thần là ba ta', 'Diêu Tư là trạch nữ không cha không mẹ, cuộc sống luôn bình bình thường thường, không tai nạn không khó khăn, cô cảm thấy cả đời cứ như vậy sống yên tới già. Sau đó… cô chết!\n" +
                 "Biến thành quỷ hút máu, còn là gà bệnh đời thứ năm, không hề có khả năng chiến đấu. Diêu Tư cảm thấy, cho dù nội chiến của Huyết tộc đánh lớn cỡ nào, trừ khi có kỳ tích, nếu không ngọn lửa đó chẳng bao giờ lan tới chỗ cô.\n" +
@@ -116,13 +119,25 @@ public class databaseDoctruyen extends SQLiteOpenHelper {
                 " ( 'chuong2truyen3' , 'Chương 2: Lần đầu gặp gỡ' , 'Trong một ngôi biệt thự gần bờ biển ở San Francisco, một cô gái có vẻ bề ngoài dịu dàng đứng ở cửa nhà bếp, nói với cô gái đang ngồi xem tivi vừa ăn hoa quả' , '003' ) , " +
                 " ( 'chuong3truyen3' , 'Chương 3: Đua xe' , 'Ly Tâm giảm tốc độ, đi từ từ để thưởng thức trò vui. Quả nhiên nghe cô nhắc nhở, có kẻ thông minh quay về lấy xe. Ly Tâm lắc đầu đầy thất vọng. Xem ra trò vui sắp kết thúc rồi, cô quay đầu lại chuẩn bị tăng tốc độ.' , '003' ); ";
         String insert_binhluan = "INSERT INTO " + TB_BINHLUAN + " ( " + TB_BINHLUAN_NOIDUNGBINHLUAN + " , " + TB_TRUYEN_MATRUYEN + " , " + TB_TAIKHOAN_TENDANGNHAP + " ) VALUES\n" +
-                "('Bình luận mẫu1', '001', 'admin')," +
-                "('Bình luận mẫu2', '002', 'admin')," +
-                "('Bình luận mẫu3', '003', 'admin')," +
-                "('Bình luận mẫu4', '001', 'duongdoi')," +
-                "('Bình luận mẫu5', '001', 'ngocdiu'),"+
-                "('Bình luận mẫu6', '002', 'duongdoi')," +
-                "('Bình luận mẫu7', '002', 'ngocdiu')" ;
+                "('Hay quá', '001', 'admin')," +
+                "('Truyện này cày cả ngày không chán :)', '001', 'admin')," +
+                "('Đang đọc dở thì hết :(', '001', 'admin')," +
+                "('Bao giờ thì ra chương mới thế ad', '001', 'duongdoi')," +
+                "('Bình luận cho vui thôi được không :)', '001', 'ngocdiu'),"+
+                "('Không ổn rồi ::::', '001', 'duongdoi')," +
+                "('Truyện này không hay nhưng vẫn đọc :)', '001', 'ngocdiu')," +
+                "('Truyện này cày cả ngày không chán :)', '002', 'admin')," +
+                "('Đang đọc dở thì hết :(', '002', 'admin')," +
+                "('Bao giờ thì ra chương mới thế ad', '002', 'duongdoi')," +
+                "('Bình luận cho vui thôi được không :)', '002', 'ngocdiu'),"+
+                "('Không ổn rồi ::::', '002', 'duongdoi')," +
+                "('Truyện này không hay nhưng vẫn đọc :)', '002', 'ngocdiu')," +
+                "('Truyện này cày cả ngày không chán :)', '003', 'admin')," +
+                "('Đang đọc dở thì hết :(', '003', 'admin')," +
+                "('Bao giờ thì ra chương mới thế ad', '003', 'duongdoi')," +
+                "('Bình luận cho vui thôi được không :)', '003', 'ngocdiu'),"+
+                "('Không ổn rồi ::::', '003', 'duongdoi')," +
+                "('Truyện này không hay nhưng vẫn đọc :)', '003', 'ngocdiu')" ;
         String insert_lichsudoc = "INSERT INTO LICHSUDOC (MATRUYEN , TENDANGNHAP ) VALUES \n" +
                 "('001', 'admin'),\n" +
                 "('002', 'admin'),\n" +
@@ -376,7 +391,8 @@ public class databaseDoctruyen extends SQLiteOpenHelper {
     }
 
 //Lịch sử đọc
-    //Lấy về danh sách tên truyện mà người dùng đã đọc
+
+
     public ArrayList<String> laydanhsachlichsudoc(String username) {
         ArrayList<String> mylist = new ArrayList<>();
         SQLiteDatabase db = this.getWritableDatabase();
@@ -401,8 +417,9 @@ public class databaseDoctruyen extends SQLiteOpenHelper {
         db.close();
         return  mylist;
     }
-//Trang chủ
-        //Kiểm tra xem người dùng đã đọc truyện này chưa
+
+//Trang chủ************************************************************
+    //Kiểm tra xem người dùng đã đọc truyện này chưa
     public boolean checkLichsudoc(String matruyen,String tendangnhap) {
         SQLiteDatabase db = this.getReadableDatabase();
         String querry = " SELECT * FROM " + TB_LICHSUDOC + " WHERE " + TB_TAIKHOAN_TENDANGNHAP + " = '" + tendangnhap + "' AND "+ TB_TRUYEN_MATRUYEN +" = '" + matruyen + "';";
@@ -412,18 +429,17 @@ public class databaseDoctruyen extends SQLiteOpenHelper {
         db.close();
         return count > 0;
     }
-    //Chưa đọc thì thêm vào bảng lịch sử đọc
-    public void themLichsudoc(String matruyen,String tendangnhap){
-        if(!checkLichsudoc(matruyen,tendangnhap)){
-            SQLiteDatabase db = this.getWritableDatabase();
-            ContentValues values = new ContentValues();
-            values.put(TB_TRUYEN_MATRUYEN,matruyen);
-            values.put(TB_TAIKHOAN_TENDANGNHAP,tendangnhap);
-            db.insert(TB_LICHSUDOC,null,values);
-            db.close();
+        //Chưa đọc thì thêm vào bảng lịch sử đọc
+        public void themLichsudoc(String matruyen,String tendangnhap){
+            if(!checkLichsudoc(matruyen,tendangnhap)){
+                SQLiteDatabase db = this.getWritableDatabase();
+                ContentValues values = new ContentValues();
+                values.put(TB_TRUYEN_MATRUYEN,matruyen);
+                values.put(TB_TAIKHOAN_TENDANGNHAP,tendangnhap);
+                db.insert(TB_LICHSUDOC,null,values);
+                db.close();
+            }
         }
-    }
-    //Lấy danh sách avatar
     public ArrayList<String> layDSAvatar(){
         ArrayList<String> mylist = new ArrayList<>();
         SQLiteDatabase db = this.getWritableDatabase();
@@ -446,3 +462,4 @@ public class databaseDoctruyen extends SQLiteOpenHelper {
         return db.rawQuery(query, null);
     }
 }
+

@@ -32,6 +32,10 @@
             android:exported="false"/>
         <activity android:name=".activity_doctruyen"
             android:exported="false"/>
+        <activity android:name=".activity_lichsudoc"
+            android:exported="false"/>
+        <activity android:name=".ManTimKiem"
+            android:exported="false"/>
         <activity
             android:name=".LoginActivity"
             android:exported="true">

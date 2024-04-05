@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +30,8 @@ public class activity_comment extends AppCompatActivity {
 
     public static String username,matruyen;
 
+    ImageView goback_img;
+
 
     databaseDoctruyen db = new databaseDoctruyen(activity_comment.this);
     @Override
@@ -45,6 +48,14 @@ public class activity_comment extends AppCompatActivity {
         hienthicomment();
         //Toast.makeText(activity_comment.this,"Load comment successfully",Toast.LENGTH_SHORT).show();
         btnCommentClick();
+
+        goback_img = findViewById(R.id.img_back);
+        goback_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
     private void hienthicomment(){
         myList.clear();

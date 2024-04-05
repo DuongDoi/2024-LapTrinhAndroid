@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#C2A77155"
+    android:background="@drawable/background_login1"
     tools:context=".LoginActivity">
 
 
@@ -12,13 +12,15 @@
         android:id="@+id/textview_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#CE50B3A8"
+
         android:gravity="center"
         android:paddingTop="30dp"
         android:paddingBottom="30dp"
         android:text="@string/login_textview"
+        android:textColor="#FFFFFF"
         android:textSize="50sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -27,13 +29,14 @@
         android:layout_width="290dp"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/size30dp"
+        android:layout_marginTop="28dp"
         android:autofillHints="username"
         android:hint="@string/username_edittext"
         android:inputType="text"
         android:padding="@dimen/size10dp"
         android:singleLine="true"
-        android:textColor="@color/black"
-        android:textColorHint="#5D4037"
+        android:textColor="@color/white"
+        android:textColorHint="#FFFFFF"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textview_login" />
@@ -43,15 +46,15 @@
         android:layout_width="290dp"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/size30dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="36dp"
         android:autofillHints="password"
-        android:backgroundTint="#FFFFFF"
+        android:backgroundTint="@color/black"
         android:hint="@string/password_edittext"
         android:inputType="textPassword"
         android:padding="@dimen/size10dp"
         android:singleLine="true"
-        android:textColor="@color/black"
-        android:textColorHint="#5D4037"
+        android:textColor="@color/white"
+        android:textColorHint="#FFFFFF"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/dangnhap_tendangnhap" />
@@ -89,10 +92,10 @@
         android:layout_width="70dp"
         android:layout_height="59dp"
         android:layout_marginTop="28dp"
+        android:contentDescription="@string/todo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textview_login"
-        app:srcCompat="@drawable/user_img"
-        android:contentDescription="@string/todo" />
+        app:srcCompat="@drawable/user_img" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -100,10 +103,10 @@
         android:layout_height="35dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="56dp"
+        android:contentDescription="@string/todo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageViewuser"
-        app:srcCompat="@drawable/key_img"
-        android:contentDescription="@string/todo" />
+        app:srcCompat="@drawable/key_img" />
 
     <TextView
         android:id="@+id/textView_tentruyen"
@@ -114,6 +117,7 @@
         android:rotationY="4"
         android:scaleX="1.2"
         android:text="@string/login_Appname"
+        android:textColor="#D8D2D2"
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

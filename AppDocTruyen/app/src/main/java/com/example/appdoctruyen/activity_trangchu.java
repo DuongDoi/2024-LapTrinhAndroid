@@ -76,6 +76,7 @@ public class activity_trangchu extends AppCompatActivity {
                 Intent intent = new Intent(activity_trangchu.this,activity_chitiettruyen.class);
                 intent.putExtra("TENDANGNHAP",username);
                 intent.putExtra("MATRUYEN",matruyen);
+                db.themLichsudoc(matruyen,username);
                 startActivity(intent);
             }
         });
@@ -85,6 +86,25 @@ public class activity_trangchu extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(activity_trangchu.this, ManTimKiem.class);
                 startActivity(intent);
+            }
+        });
+
+        navview.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                // Kiểm tra xem ID của mục menu được chọn có phải là "lsdoc" không
+                if (item.getItemId() == R.id.lsdoc) {
+                    // Chuyển hướng sang hoạt động mới (activity_lsdoc)
+                    Intent intent = new Intent(activity_trangchu.this, activity_lichsudoc.class);
+                    intent.putExtra("TENDANGNHAP",username);
+                    startActivity(intent);
+                    return true;
+                }
+                if (item.getItemId() == R.id.logout) {
+                    finish();
+                    return true;
+                }
+                return false;
             }
         });
     }
@@ -155,8 +175,8 @@ public class activity_trangchu extends AppCompatActivity {
             }
         });
     }
-    
-//    Bắt sự kiện khi click vào search
+
+    //    Bắt sự kiện khi click vào search
     @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {

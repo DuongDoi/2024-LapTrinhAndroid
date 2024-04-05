@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +21,8 @@ public class activity_danhsachchuong extends AppCompatActivity {
 
 
     public static String username,matruyen,machuong;
+
+    ImageView goback;
     private ListView lv_danhsachchuong;
     private ArrayList<String> myList;
     private ArrayAdapter<String> myadapter;
@@ -50,6 +54,13 @@ public class activity_danhsachchuong extends AppCompatActivity {
                 intent.putExtra("MATRUYEN",matruyen);
                 intent.putExtra("MACHUONG",machuong);
                 startActivity(intent);
+            }
+        });
+        goback = findViewById(R.id.img_backdsc);
+        goback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }

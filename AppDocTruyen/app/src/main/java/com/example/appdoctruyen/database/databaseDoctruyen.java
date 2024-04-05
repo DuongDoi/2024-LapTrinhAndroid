@@ -376,5 +376,25 @@ public class databaseDoctruyen extends SQLiteOpenHelper {
         return  mylist;
     }
 
+    public ArrayList<String> layDSAvatar(){
+        ArrayList<String> mylist = new ArrayList<>();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.query(TB_TRUYEN, null, null, null, null, null, null);
+        c.moveToNext();
+        String data = "";
+        while(!c.isAfterLast()){
+            data = c.getString(3) ;
+            c.moveToNext();
+            mylist.add(data);
+        }
+        c.close();
+        db.close();
+        return  mylist;
+    }
 
+    public Cursor timKiemTruyen(String searchText) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM"+ TB_TRUYEN +" WHERE"+ TB_TRUYEN_TENTRUYEN+ "LIKE '%" + searchText + "%'";
+        return db.rawQuery(query, null);
+    }
 }

@@ -21,6 +21,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
@@ -31,6 +32,9 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 public class activity_trangchu extends AppCompatActivity {
+
+    View headerView;
+    TextView tvWelcome;
     Toolbar toolbar;
     ViewFlipper viewFlipper;
     NavigationView navview;
@@ -38,6 +42,7 @@ public class activity_trangchu extends AppCompatActivity {
     EditText timKiem;
     ImageButton btnsearch;
     private ListView lvDSTruyen;
+
     private ArrayList<String> myList;
     private ArrayAdapter<String> myadapter;
 
@@ -121,6 +126,9 @@ public class activity_trangchu extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawerlayout);
         timKiem = findViewById(R.id.menu1);
         btnsearch = findViewById(R.id.btnsearch);
+        headerView =navview.getHeaderView(0);
+        tvWelcome = headerView.findViewById(R.id.tv_welcome);
+        tvWelcome.setText("WELCOME\n" + username);
     }
     private void ActionViewFlipper() {
         //mảng chứa ảnh cho màn hình chạy

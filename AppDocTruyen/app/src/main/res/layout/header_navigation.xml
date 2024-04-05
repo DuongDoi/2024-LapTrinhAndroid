@@ -2,32 +2,33 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/colorGray"
-    android:orientation="vertical"
+    android:id="@+id/header"
     android:layout_width="match_parent"
     android:layout_height="120dp"
-    android:id="@+id/header">
+    android:background="@color/white"
+    android:orientation="vertical">
 
     <ImageView
         android:id="@+id/imgheadernav"
-        android:layout_width="130dp"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
         android:background="@drawable/avatar_nav"
-        app:layout_constraintEnd_toStartOf="@+id/tv_welcome"
+        app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/tv_welcome"
-        android:layout_width="279dp"
-        android:layout_height="120dp"
-        android:background="#FDF6FE"
+        android:layout_width="wrap_content"
+        android:layout_height="124dp"
+        android:background="#FFFFFF"
         android:paddingTop="@dimen/size20dp"
         android:text="Welcome: \n"
         android:textAlignment="center"
         android:textAllCaps="true"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/imgheadernav"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/imgheadernav"
+        app:layout_constraintTop_toTopOf="@id/imgheadernav" />
 </androidx.constraintlayout.widget.ConstraintLayout>

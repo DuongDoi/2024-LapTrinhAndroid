@@ -12,7 +12,7 @@
     ></item>
     <item
         android:title="Đăng xuất"
-        android:id="@+id/setting"
+        android:id="@+id/logout"
         android:icon="@drawable/ic_nav_logout"
     ></item>
 </menu>

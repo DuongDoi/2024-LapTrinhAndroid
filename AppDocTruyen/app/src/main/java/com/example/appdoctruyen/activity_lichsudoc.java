@@ -50,6 +50,9 @@ public class activity_lichsudoc extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+
         goback = findViewById(R.id.img_backlsd);
         goback.setOnClickListener(new View.OnClickListener() {
             @Override

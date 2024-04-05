@@ -63,7 +63,7 @@ public class RegistryActivity extends AppCompatActivity {
         databaseDoctruyen databaseHelper = new databaseDoctruyen(RegistryActivity.this);
 
         if(databaseHelper.checkTendangnhap(username)){
-            Toast.makeText(RegistryActivity.this, "Tài khoản đã ồn tại!!!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(RegistryActivity.this, "Tài khoản đã tồn tại!!!", Toast.LENGTH_SHORT).show();
         }
         else{
 

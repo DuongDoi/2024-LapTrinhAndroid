@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_lsdoc">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/img_backlsd"
+                android:layout_width="@dimen/size40dp"
+                android:layout_height="match_parent"
+                android:background="#E3E0D1"
+                android:backgroundTint="#E3E0D1"
+                android:src="@drawable/arrow_left" />
+            <TextView
+                android:id="@+id/tv_lichsudoc"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:paddingTop="@dimen/size20dp"
+                android:text="Lịch sử đọc"
+                android:textAlignment="center"
+                android:textSize="34sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/listview_lichsudoc"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/size20dp"
+            />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

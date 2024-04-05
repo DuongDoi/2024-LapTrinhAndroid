@@ -392,7 +392,9 @@ public class databaseDoctruyen extends SQLiteOpenHelper {
 
 //Lịch sử đọc
 
-
+    //Đầu vào là tên đăng nhập 
+    //truy vấn select trong bảng lịch sử đọc theo tên đăng nhập và trả về danh sách mã truyện,
+    //từ mã truyện truy vấn select trong bảng truyện để trả về tên truyện
     public ArrayList<String> laydanhsachlichsudoc(String username) {
         ArrayList<String> mylist = new ArrayList<>();
         SQLiteDatabase db = this.getWritableDatabase();

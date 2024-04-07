@@ -1,6 +1,6 @@
 # App đọc truyện
-# Ứng dụng android được xây dựng và phát triển bằng android studio
-# Tính năng: đăng nhập, đăng ký, đọc truyện, xem thông tin truyện, bình luận truyện, lưu lại truyện đã đọc, xem danh sách chương,...
+# Ứng dụng đọc truyện được xây dựng và phát triển bằng android studio
+# Tính năng: đăng nhập, đăng ký, đọc truyện, xem thông tin truyện, bình luận truyện, lưu lại truyện đã đọc, xem danh sách truyện,...
 # Hướng dẫn sử dụng cho người mới:
   + Bước 1: Tạo tài khoản
   + Bước 2: Đăng nhập

@@ -13,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.appdoctruyen.database.databaseDoctruyen;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class activity_lichsudoc extends AppCompatActivity {
 
@@ -37,12 +36,13 @@ public class activity_lichsudoc extends AppCompatActivity {
         myadapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,myList);
         listView.setAdapter(myadapter);
         hienthiDSLichsudoc();
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String tenTruyenDuocChon = myList.get(position);
                 int viTri = myList.indexOf(tenTruyenDuocChon);
-                String maTruyenTuongUng = db.layDSMaTruyen().get(viTri);
+                String maTruyenTuongUng = db.layDSMaTruyenLSD(username).get(viTri);
                 matruyen = maTruyenTuongUng;
                 Intent intent = new Intent(activity_lichsudoc.this,activity_chitiettruyen.class);
                 intent.putExtra("TENDANGNHAP",username);
@@ -51,7 +51,9 @@ public class activity_lichsudoc extends AppCompatActivity {
             }
         });
 
-
+        //1 líst tra ve ten truyen da doc, dong thoi lay ve 1 list tra ve danh sach ma truyen
+        // list1 ={truyen1,trruyenn2 ,truyen3} -> hien thi ra giao dien
+        //list ={001,002,003} -> khong can hien thi
 
         goback = findViewById(R.id.img_backlsd);
         goback.setOnClickListener(new View.OnClickListener() {

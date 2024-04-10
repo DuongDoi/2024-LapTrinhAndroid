@@ -33,12 +33,12 @@ public class databaseDoctruyen extends SQLiteOpenHelper {
     //BÌNH LUẬN
     public static String TB_BINHLUAN_MABINHLUAN = "MABINHLUAN";
     public static String TB_BINHLUAN_NOIDUNGBINHLUAN = "NOIDUNGBINHLUAN";
-    //LỊCH SỬ ĐỌC
-    public static String TB_LICHSUDOC_MALICHSUDOC = "MALICHSUDOC";
 
 
+
+    //Khi thay đổi cơ sở dữ liệu thì cập nhật lên version mới
     public databaseDoctruyen(Context context) {
-        super(context,"AppDocTruyen",null,1);
+        super(context,"AppDocTruyen",null,5);
     }
 
     @Override
@@ -66,8 +66,7 @@ public class databaseDoctruyen extends SQLiteOpenHelper {
                 + " FOREIGN KEY ( " + TB_TRUYEN_MATRUYEN + " ) REFERENCES " + TB_TRUYEN + " ( " + TB_TRUYEN_MATRUYEN + " ), "
                 + " FOREIGN KEY ( " + TB_TAIKHOAN_TENDANGNHAP + " ) REFERENCES " + TB_TAIKHOAN + " ( " + TB_TAIKHOAN_TENDANGNHAP + " ));";
         String tbLICHSUDOC = "CREATE TABLE " + TB_LICHSUDOC
-                + " ( " + TB_CHITIETCHUONG_MACHUONG + " TEXT, "
-                + TB_TRUYEN_MATRUYEN + " TEXT, "
+                + " ( " + TB_TRUYEN_MATRUYEN + " TEXT, "
                 + TB_TAIKHOAN_TENDANGNHAP + " TEXT, "
                 + "PRIMARY KEY ( " + TB_TRUYEN_MATRUYEN + " , " + TB_TAIKHOAN_TENDANGNHAP + " ) ,"
                 + " FOREIGN KEY ( " + TB_TRUYEN_MATRUYEN + " ) REFERENCES " + TB_TRUYEN + " ( " + TB_TRUYEN_MATRUYEN + " ), "
@@ -78,8 +77,7 @@ public class databaseDoctruyen extends SQLiteOpenHelper {
                 "    ('duongdoi', 'duongdoi')," +
                 "    ('ngocdiu', 'ngocdiu')," +
                 "    ('quynhanh', 'quynhanh')," +
-                "    ('lanhuong', 'lanhuong')," +
-                "    ('a', 'a')";
+                "    ('lanhuong', 'lanhuong')";
         String isTRUYEN = "INSERT INTO TRUYEN ( MATRUYEN , TENTRUYEN , MOTATRUYEN , AVATAR , SOCHUONG) \n" +
                 "VALUES ('001', 'Tinh tế nam thần là ba ta', 'Diêu Tư là trạch nữ không cha không mẹ, cuộc sống luôn bình bình thường thường, không tai nạn không khó khăn, cô cảm thấy cả đời cứ như vậy sống yên tới già. Sau đó… cô chết!\n" +
                 "Biến thành quỷ hút máu, còn là gà bệnh đời thứ năm, không hề có khả năng chiến đấu. Diêu Tư cảm thấy, cho dù nội chiến của Huyết tộc đánh lớn cỡ nào, trừ khi có kỳ tích, nếu không ngọn lửa đó chẳng bao giờ lan tới chỗ cô.\n" +
@@ -219,9 +217,11 @@ public class databaseDoctruyen extends SQLiteOpenHelper {
 
     }
 
+    //Luôn gọi mỗi khi bắt đầu activity để mở cơ sở dữ liệu, từ đó mới có thể thao tác được với CSDL
     public SQLiteDatabase open(){
         return this.getWritableDatabase();
     }
+
 
 
     @Override
@@ -263,6 +263,7 @@ public class databaseDoctruyen extends SQLiteOpenHelper {
         db.close();
         return count > 0;
     }
+
     //Thêm comment mới của truyện có mã truyện = "_matruyen",với nội dung = "_noidung", do người dùng với tên đăng nhập = "_tendangnhap" bình luận
     public boolean themBinhluan(String _noidung ,String _matruyen ,String _tendangnhap){
         try{
@@ -290,13 +291,17 @@ public class databaseDoctruyen extends SQLiteOpenHelper {
         c.moveToNext();
         String data = "";
         while(!c.isAfterLast()){
-            data =  c.getString(3) + ": \n\t- " + c.getString(1) ;
-            c.moveToNext();
+            data =  c.getString(3) + ": \n\t- " + c.getString(1) ; // 3: là cột tên đăng nhập, 1 là cột nội dung binh luận
+            // duongdoi :
+            // - abc
+            // admin :
+            // - abc
             mylist.add(data);
+            c.moveToNext();
         }
-        c.close();
+        c.close(); //Đóng con trỏ để tránh dò dỉ dữ liệu
         db.close();
-        return  mylist;
+        return  mylist; //Mỗi phần tử trong list là 1 chuỗi mylist = {"duongdoi : \n\t- abc","admin : \n\t- abc"}
     }
 //Danh sách chương truyện***********************************************************************************************************************
     //Lấy về danh sách chương của truyện có mã truyện = "matruyen"
@@ -309,13 +314,13 @@ public class databaseDoctruyen extends SQLiteOpenHelper {
         c.moveToNext();
         String data = "";
         while(!c.isAfterLast()){
-            data = "\t" + c.getString(1) ;
+            data = "\t" + c.getString(1) ; //1 l cột tên chương
             c.moveToNext();
             mylist.add(data);
         }
         c.close();
         db.close();
-        return  mylist;
+        return  mylist; //Mỗi phần tử trong list là 1 chuỗi mylist = {"Chương 1: gigidp","chương 2: "}
     }
     public ArrayList<String> layDSMaChuong(String matruyen){
         ArrayList<String> mylist = new ArrayList<>();
@@ -393,9 +398,9 @@ public class databaseDoctruyen extends SQLiteOpenHelper {
 //Lịch sử đọc
 
     //Đầu vào là tên đăng nhập 
-    //truy vấn select trong bảng lịch sử đọc theo tên đăng nhập và trả về danh sách mã truyện,
+    //truy vấn select trong bảng lịch sử đọc theo ddiefu kiện là tên đăng nhập và trả về danh sách mã truyện,
     //từ mã truyện truy vấn select trong bảng truyện để trả về tên truyện
-    public ArrayList<String> laydanhsachlichsudoc(String username) {
+    public ArrayList<String> laydanhsachlichsudoc(String username) { //admin
         ArrayList<String> mylist = new ArrayList<>();
         SQLiteDatabase db = this.getWritableDatabase();
         String selection = "TENDANGNHAP = ?";
@@ -405,11 +410,36 @@ public class databaseDoctruyen extends SQLiteOpenHelper {
         String data = "";
         while(!c.isAfterLast()){
             String selection2 = "MATRUYEN = ?";
-            String[] selectionArgs2 = { c.getString(2) };
+            String[] selectionArgs2 = { c.getString(0) };
             Cursor c2 = db.query(TB_TRUYEN, null, selection2, selectionArgs2, null, null, null);
             c2.moveToNext();
             while (!c2.isAfterLast()){
                 data = c2.getString(1);
+                mylist.add(data);
+                c2.moveToNext();
+            }
+            c.moveToNext();
+        }
+        c.close();
+        db.close();
+        return  mylist;
+    }
+    //Lay danh sach ma truyen lich su doc
+    public ArrayList<String> layDSMaTruyenLSD(String username){
+        ArrayList<String> mylist = new ArrayList<>();
+        SQLiteDatabase db = this.getWritableDatabase();
+        String selection = "TENDANGNHAP = ?";
+        String[] selectionArgs = { username };
+        Cursor c = db.query(TB_LICHSUDOC, null, selection, selectionArgs, null, null, null);
+        c.moveToNext();
+        String data = "";
+        while(!c.isAfterLast()){
+            String selection2 = "MATRUYEN = ?";
+            String[] selectionArgs2 = { c.getString(0) };
+            Cursor c2 = db.query(TB_TRUYEN, null, selection2, selectionArgs2, null, null, null);
+            c2.moveToNext();
+            while (!c2.isAfterLast()){
+                data = c2.getString(0);
                 mylist.add(data);
                 c2.moveToNext();
             }
@@ -442,26 +472,6 @@ public class databaseDoctruyen extends SQLiteOpenHelper {
                 db.close();
             }
         }
-    public ArrayList<String> layDSAvatar(){
-        ArrayList<String> mylist = new ArrayList<>();
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor c = db.query(TB_TRUYEN, null, null, null, null, null, null);
-        c.moveToNext();
-        String data = "";
-        while(!c.isAfterLast()){
-            data = c.getString(3) ;
-            c.moveToNext();
-            mylist.add(data);
-        }
-        c.close();
-        db.close();
-        return  mylist;
-    }
 
-    public Cursor timKiemTruyen(String searchText) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT * FROM"+ TB_TRUYEN +" WHERE"+ TB_TRUYEN_TENTRUYEN+ "LIKE '%" + searchText + "%'";
-        return db.rawQuery(query, null);
-    }
 }
 
